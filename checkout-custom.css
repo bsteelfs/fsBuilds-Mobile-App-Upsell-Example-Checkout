@@ -1,0 +1,135 @@
+/* ==========================================================================
+   FastSpring Custom Embedded Checkout Styles
+   Matches Custom Dark Theme with Gold Highlights
+   ========================================================================== */
+
+/* 1. Global Reset & Container Overrides */
+.fsc-checkout-container,
+.fsc-checkout,
+body {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+/* 2. Total & Price Styling */
+.fsc-total-label {
+    color: #facc15 !important; /* Gold/Yellow "Total:" label */
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+}
+
+.fsc-total-price,
+.fsc-price-discounted {
+    color: #facc15 !important; /* Bright Gold discounted price */
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+}
+
+/* Strikethrough Original Price */
+.fsc-price-original,
+.fsc-strikethrough {
+    color: #64748b !important; /* Muted gray for strikethrough */
+    text-decoration: line-through !important;
+    font-size: 1.1rem !important;
+    margin-right: 6px !important;
+}
+
+/* Tax Line */
+.fsc-tax-info,
+.fsc-subtotal-tax {
+    color: #94a3b8 !important;
+    font-size: 0.875rem !important;
+    margin-top: 4px !important;
+}
+
+/* 3. Section Titles & Dividers */
+.fsc-section-title,
+.fsc-payment-method-header {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    margin-bottom: 12px !important;
+}
+
+/* Dark Slate Horizontal Dividers */
+hr,
+.fsc-divider {
+    border: none !important;
+    border-top: 1px solid #1e293b !important;
+    margin: 16px 0 !important;
+}
+
+/* 4. Saved Card Display */
+.fsc-saved-card,
+.fsc-payment-option {
+    background: #000000 !important;
+    border-radius: 8px !important;
+    padding: 8px 0 !important;
+    color: #ffffff !important;
+}
+
+.fsc-card-details,
+.fsc-card-expiry {
+    color: #cbd5e1 !important;
+    font-size: 0.9rem !important;
+}
+
+/* 5. "+ Use new payment method" Link */
+.fsc-add-payment-method,
+a.fsc-action-link {
+    color: #38bdf8 !important; /* Soft cyan/blue text link */
+    font-size: 0.95rem !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    display: inline-block !important;
+    margin: 8px 0 !important;
+}
+
+.fsc-add-payment-method:hover,
+a.fsc-action-link:hover {
+    color: #60a5fa !important;
+    text-decoration: underline !important;
+}
+
+/* 6. Primary Action Button ("Pay $53.60") */
+.fsc-button-primary,
+button[type="submit"].fsc-btn,
+.fsc-pay-btn {
+    background-color: #3b82f6 !important; /* Vibrant primary blue */
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    padding: 14px 20px !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease, transform 0.1s ease !important;
+    margin-top: 12px !important;
+}
+
+.fsc-button-primary:hover,
+button[type="submit"].fsc-btn:hover {
+    background-color: #2563eb !important;
+}
+
+.fsc-button-primary:active,
+button[type="submit"].fsc-btn:active {
+    transform: scale(0.99) !important;
+}
+
+/* 7. Footer / Reseller Disclaimer */
+.fsc-footer-disclaimer,
+.fsc-reseller-info {
+    color: #94a3b8 !important;
+    font-size: 0.75rem !important;
+    text-align: center !important;
+    margin-top: 20px !important;
+}
+
+.fsc-footer-disclaimer a,
+.fsc-reseller-info a {
+    color: #cbd5e1 !important;
+    text-decoration: underline !important;
+}

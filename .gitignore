@@ -1,0 +1,19 @@
+# Environment variables (contains keys & secrets)
+.env
+.env.*
+
+# RSA Keys
+keys/*.pem
+keys/*.key
+
+# Node dependencies
+node_modules/
+npm-debug.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# macOS archive artifacts
+__MACOSX/
+*.zip

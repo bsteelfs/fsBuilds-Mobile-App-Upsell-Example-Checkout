@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Lifetime Access</title>
+<style>
+    /* Reset margins and ensure full-height centering */
+    * { box-sizing: border-box; }
+    body { 
+        margin: 0; 
+        background: #222; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        min-height: 100vh; 
+        padding: 20px; 
+        font-family: sans-serif; 
+    }
+
+    .checkout-wrapper { 
+        width: 100%; 
+        max-width: 400px; 
+        background: #000; 
+        border-radius: 12px; 
+        overflow: hidden; 
+        color: white; 
+        border: 1px solid #333; 
+    }
+
+    .header { 
+        background: #3b82f6; 
+        text-align: center; 
+        padding: 12px; 
+        font-weight: bold; 
+    }
+
+    /* Flexbox setup to force FastSpring's embedded iframe directly into the center */
+    #fsc-embedded-checkout-container,
+    #fs-checkout-container { 
+        min-height: 300px; 
+        padding: 10px 0; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Target FastSpring's generated iframe inside the container */
+    #fsc-embedded-checkout-container iframe,
+    #fs-checkout-container iframe {
+        margin: 0 auto !important;
+        display: block !important;
+        max-width: 100% !important;
+    }
+
+    .footer { 
+        background: linear-gradient(to right, #1e3a8a, #3b82f6); 
+        padding: 15px; 
+        text-align: center; 
+        font-size: 12px; 
+    }
+
+    .success-msg { padding: 40px 20px; text-align: center; color: #4ade80; font-size: 1.2rem; }
+    .error-msg { padding: 40px 20px; text-align: center; color: #f87171; }
+</style>
+</head>
+<body>
+
+    <div class="checkout-wrapper">
+        <div class="header">
+            Get Lifetime Access!
+        </div>
+
+        <!-- This is your exact requested DIV container -->
+        <div id="fsc-embedded-checkout-container"></div>
+
+        <div class="footer">
+            <span style="background: #064e3b; color: #34d399; padding: 5px 10px; border-radius: 20px; margin-right: 10px;">🔥 FREE BONUS</span>
+            Top 3 AI-Powered Trading Strategies in 2026
+        </div>
+    </div>
+
+    <script>
+        async function loadCheckout() {
+            // 1. Fetch the secure session from our backend
+            const res = await fetch('/api/plan/session', { method: 'POST' });
+            const data = await res.json();
+
+            if (!data.secure) return console.error('Failed to load secure session');
+
+            // 2. Set the callbacks required by SBL[cite: 1]
+            window.__msData = function(d) { console.log('SBL Data:', d); };
+            window.__msComplete = function(order) { 
+                console.log('Order Complete!', order);
+                setTimeout(() => window.location.href = '/addon.html', 3000);
+            };
+            window.__msError = function(code, msg) { console.error('SBL Error:', code, msg); };
+
+           // 3. Push the secure payload to the window BEFORE injecting the script
+window.fscSession = { secure: data.secure };
+
+            // 4. Build and inject your script dynamically[cite: 1]
+            const script = document.createElement("script");
+            script.id = "fsc-api";
+            script.src = "https://sbl.onfastspring.com/sbl/1.0.7/fastspring-builder.min.js";
+            
+            // This injects the storefront from your .env file
+            script.setAttribute("data-storefront", data.storefront);
+            script.setAttribute("data-access-key", data.accessKey);
+            
+            // This tells FastSpring to use your specific container ID
+            script.setAttribute("data-checkout-id", "fsc-embedded-checkout-container"); 
+            
+            script.setAttribute("data-data-callback", "__msData");
+            script.setAttribute("data-popup-webhook-received", "__msComplete");
+            script.setAttribute("data-error-callback", "__msError");
+            
+            document.head.appendChild(script);
+
+            // 5. Explicitly call checkout() to render it[cite: 1]
+            script.onload = () => {
+                fastspring.builder.checkout(); 
+            };
+        }
+
+        loadCheckout();
+    </script>
+</body>
+</html>
